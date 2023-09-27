@@ -16,7 +16,7 @@ const redditPostsSlice = createSlice({
         isLoading: false,
         hasError: false,
         searchTerm: '',
-        selectedSubreddit: 'pics'
+        selectedSubreddit: 'popular'
     },
     reducer: {
 
@@ -56,5 +56,7 @@ export const selectFilteredPosts = state => {
     }
     return posts;
 };
+export const selectIsLoading = state => state.redditPosts.isLoading;
+export const selectHasError = state => state.redditPosts.hasError;
 
 export const selectSubreddit = state => state.redditPosts.selectedSubreddit;
