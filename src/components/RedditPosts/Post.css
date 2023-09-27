@@ -1,0 +1,8 @@
+.post {
+    width: 50%;
+}
+
+.post img {
+    max-width: 100%;
+    min-width: 50%;
+}
