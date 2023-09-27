@@ -1,5 +1,7 @@
 import React from 'react';
 import Comment from '../Comment/Comment';
+import Markdown from 'react-markdown';
+import remarkGfm from 'remark-gfm';
 import './Post.css';
 
 function Post({post}) {
@@ -9,7 +11,7 @@ function Post({post}) {
     return (
         <div class="post">
             <h3>{post.title}</h3>
-            <p>{post.selftext}</p>
+            <Markdown children={post.selftext} remarkPlugins={[remarkGfm]} />
             {
                 //check if post has a preview image
                 hasImg ?
@@ -17,11 +19,6 @@ function Post({post}) {
                         post.url.charAt(post.url.length - 1) === "g" ? post.url : post.thumbnail} alt="thumbnail"/>
                 :
                     ""
-            }
-            {
-                /*post.comments.map(comment => (
-                    <Comment comment={comment} key={comment.id} />
-                ))*/
             }
             <hr />
         </div>

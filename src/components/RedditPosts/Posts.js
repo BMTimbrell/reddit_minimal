@@ -16,7 +16,10 @@ function Posts() {
 
     return (
         <div>
+            <h2>r/{subreddit}</h2>
             {
+                isLoading ? <p>Loading...</p> :
+                hasError ? <p>Oh no! Something went wrong!</p> :
                 posts.map(post => (
                     <Post post={post} key={post.id} />
                 ))

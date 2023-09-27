@@ -16,7 +16,7 @@ const redditPostsSlice = createSlice({
         isLoading: false,
         hasError: false,
         searchTerm: '',
-        selectedSubreddit: 'popular'
+        selectedSubreddit: 'webdev'
     },
     reducer: {
 
