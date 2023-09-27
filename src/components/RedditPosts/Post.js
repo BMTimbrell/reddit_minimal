@@ -9,7 +9,7 @@ function Post({post}) {
     const urlEnd = post.url.substring(post.url.length - 3, post.url.length);
     const hasImg = thumbnailEnd === "png" || thumbnailEnd === "jpg" || urlEnd === "png" || urlEnd === "jpg"
     return (
-        <div class="post">
+        <div className="post">
             <h3>{post.title}</h3>
             <Markdown children={post.selftext} remarkPlugins={[remarkGfm]} />
             {

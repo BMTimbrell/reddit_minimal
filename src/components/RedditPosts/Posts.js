@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import Post from './Post';
-import { selectFilteredPosts, loadPosts, selectSubreddit, selectIsLoading, selectHasError } from './redditPostsSlice';
+import { selectFilteredPosts, loadPosts, selectSubreddit, selectIsLoading, selectHasError, setSelectedSubreddit } from './redditPostsSlice';
 
 function Posts() {
     const dispatch = useDispatch();
@@ -12,11 +12,16 @@ function Posts() {
 
     useEffect(() => {
         dispatch(loadPosts(subreddit));
-    }, [subreddit, dispatch]);
+    }, [subreddit]);
+
+    const onChangeHandler = e => {
+        dispatch(setSelectedSubreddit(e.target.value));
+    };
 
     return (
         <div>
             <h2>r/{subreddit}</h2>
+            <input type="text" placeholder="Enter subreddit name" onChange={onChangeHandler} />
             {
                 isLoading ? <p>Loading...</p> :
                 hasError ? <p>Oh no! Something went wrong!</p> :

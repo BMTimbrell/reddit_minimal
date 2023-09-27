@@ -16,10 +16,14 @@ const redditPostsSlice = createSlice({
         isLoading: false,
         hasError: false,
         searchTerm: '',
-        selectedSubreddit: 'webdev'
+        selectedSubreddit: 'popular'
     },
-    reducer: {
-
+    reducers: {
+        setSelectedSubreddit: (state, action) => {
+            if (action.payload === "") state.selectedSubreddit = 'popular';
+            else state.selectedSubreddit = action.payload;
+            state.searchTerm = '';
+        }
     },
     extraReducers: builder => {
         builder
@@ -31,7 +35,6 @@ const redditPostsSlice = createSlice({
             .addCase(loadPosts.fulfilled, (state, action) => {
                 state.isLoading = false;
                 state.hasError = false;
-                console.log(action.payload);
                 state.posts = action.payload;
             })
             .addCase(loadPosts.rejected, (state, action) => {
@@ -43,7 +46,7 @@ const redditPostsSlice = createSlice({
 });
 
 export default redditPostsSlice.reducer;
-
+export const {setSelectedSubreddit} = redditPostsSlice.actions;
 export const selectPosts = state => state.redditPosts.posts;
 export const selectSearchTerm = state => state.redditPosts.searchTerm;
 export const selectFilteredPosts = state => {
@@ -58,5 +61,4 @@ export const selectFilteredPosts = state => {
 };
 export const selectIsLoading = state => state.redditPosts.isLoading;
 export const selectHasError = state => state.redditPosts.hasError;
-
 export const selectSubreddit = state => state.redditPosts.selectedSubreddit;
