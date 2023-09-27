@@ -8,7 +8,7 @@ const subredditsSlice = createSlice({
         hasError: false
     },
     reducer: {
-        
+
     }
 });
 
