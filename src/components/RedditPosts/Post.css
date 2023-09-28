@@ -1,7 +1,8 @@
 .post {
     width: 50%;
-    background-color: #F39F5A;
-    margin: 0 auto;
+    background-color: white;
+    color: black;
+    margin: 2% auto;
 }
 
 img.thumbnail {
