@@ -33,7 +33,7 @@ function Post({post}) {
             }
             <div className="footnote">
                 <img src="../images/comment_icon.png" alt="comment icon" /> {post.num_comments}
-                {"score: " + roundThousand(post.score)}
+                &nbsp;&nbsp;<img src="../images/score_icon.png" alt="score icon" /> {roundThousand(post.score)}
             </div>
             <hr />
         </div>
