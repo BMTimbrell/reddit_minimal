@@ -1,8 +1,20 @@
 .post {
     width: 50%;
+    background-color: #F39F5A;
+    margin: 0 auto;
 }
 
-.post img {
+img.thumbnail {
     max-width: 100%;
     min-width: 50%;
+}
+
+.post video {
+    max-width: 100%;
+    min-width: 50%;
+}
+
+.footnote img {
+    width: 1em;
+    height: auto;
 }
