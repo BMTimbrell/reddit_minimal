@@ -2,6 +2,7 @@ import React, { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import Post from './Post';
 import { selectFilteredPosts, loadPosts, selectSubreddit, selectIsLoading, selectHasError, setSelectedSubreddit } from './redditPostsSlice';
+import './Posts.css';
 
 function Posts() {
     const dispatch = useDispatch();
@@ -19,12 +20,12 @@ function Posts() {
     };
 
     return (
-        <div>
-            <h2>r/{subreddit}</h2>
-            <input type="text" placeholder="Enter subreddit name" onChange={onChangeHandler} />
+        <div className="posts">
+                <h2>r/{subreddit}</h2>
+                <input type="text" placeholder="Enter subreddit name" onChange={onChangeHandler} />
             {
                 isLoading ? <p>Loading...</p> :
-                hasError ? <p>Oh no! Something went wrong!</p> :
+                hasError ? <p>Failed to load posts!</p> :
                 posts.map(post => (
                     <Post post={post} key={post.id} />
                 ))

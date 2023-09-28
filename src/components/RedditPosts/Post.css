@@ -3,6 +3,27 @@
     background-color: white;
     color: black;
     margin: 2% auto;
+    text-align: left;
+    padding: 0.3125rem;
+}
+
+h3 {
+    margin: 0.3125rem;
+}
+
+.content {
+    margin-left: 0.3125rem;
+}
+
+hr {
+    margin-top: 0.3125rem;
+    margin-bottom: 0.3125rem;
+}
+
+.time {
+    text-align: center;
+    color: rgba(0, 0, 0, 0.6);
+    margin-left: 0.3125rem;
 }
 
 img.thumbnail {
@@ -13,6 +34,10 @@ img.thumbnail {
 .post video {
     max-width: 100%;
     min-width: 50%;
+}
+
+.footnote {
+    text-align: center;
 }
 
 .footnote img {

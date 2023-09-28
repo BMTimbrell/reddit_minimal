@@ -11,9 +11,9 @@ function Post({post}) {
     const hasImg = thumbnailEnd === "png" || thumbnailEnd === "jpg" || urlEnd === "png" || urlEnd === "jpg"
     return (
         <div className="post">
-            <span>Posted by {post.author + ' ' + getDateDifference(post.created_utc)}</span>
+            <span className="time">Posted by {post.author + ' ' + getDateDifference(post.created_utc)}</span>
             <h3>{post.title}</h3>
-            <Markdown children={post.selftext} remarkPlugins={[remarkGfm]} />
+            <Markdown className="content" children={post.selftext} remarkPlugins={[remarkGfm]} />
             {
                 //check if post has a preview image
                 hasImg && !post.is_video ?
@@ -31,11 +31,11 @@ function Post({post}) {
                 : 
                     ""
             }
+            <hr />
             <div className="footnote">
                 <img src="../images/comment_icon.png" alt="comment icon" /> {roundThousand(post.num_comments)}
                 &nbsp;&nbsp;<img src="../images/score_icon.png" alt="score icon" /> {roundThousand(post.score)}
             </div>
-            <hr />
         </div>
     );
 }
