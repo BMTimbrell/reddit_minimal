@@ -14,12 +14,12 @@ export const getDateDifference = date => {
     if (makeTimeCreatedString(days, 'day')) return makeTimeCreatedString(days, 'day');
     if (makeTimeCreatedString(hours, 'hour')) return makeTimeCreatedString(hours, 'hour');
     if (makeTimeCreatedString(minutes, 'minute')) return makeTimeCreatedString(minutes, 'minute');
-    return `${seconds} seconds ago.`;
+    return `${seconds} seconds ago`;
 };
 
 const makeTimeCreatedString = (number, unit) => {
     if (number > 1) return `${number} ${unit}s ago`;
-    else if (number === 1) return `${number} ${unit} ago.`;
+    else if (number === 1) return `${number} ${unit} ago`;
     else return '';
 };
 

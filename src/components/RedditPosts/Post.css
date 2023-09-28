@@ -26,18 +26,17 @@ hr {
     margin-left: 0.3125rem;
 }
 
-img.thumbnail {
-    max-width: 100%;
-    min-width: 50%;
-}
-
-.post video {
-    max-width: 100%;
-    min-width: 50%;
+img.thumbnail, .post video {
+    width: 100%;
 }
 
 .footnote {
     text-align: center;
+}
+
+.footnote:hover {
+    background-color: #cacaca;
+    cursor: pointer;
 }
 
 .footnote img {
