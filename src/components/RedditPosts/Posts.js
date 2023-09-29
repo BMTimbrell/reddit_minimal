@@ -29,7 +29,7 @@ function Posts() {
                     isLoading ? <p>Loading...</p> :
                     hasError ? <p>Failed to load posts!</p> :
                     posts.map(post => (
-                        <Post post={post} key={post.id} showComments={false} />
+                        <Post post={post} key={post.id} showsComments={false} />
                     ))
                 }
             </div>
@@ -42,7 +42,7 @@ function Posts() {
                 {
                     isLoading ? <p>Loading...</p> :
                     hasError ? <p>Failed to load posts!</p> :
-                        <Post post={post[0]} key={post[0].id} showComments={true}><Outlet /></Post>
+                        <Post post={post[0]} key={post[0].id} showsComments={true}><Outlet /></Post>
                 }
             </div>
         );

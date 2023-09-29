@@ -9,7 +9,6 @@ export const loadPosts = createAsyncThunk(
         return json.data.children.map((post) => (
             {
                 ...post.data,
-                isShowingComments: false,
                 comments: []
             }
             
@@ -34,7 +33,8 @@ const redditPostsSlice = createSlice({
         hasError: false,
         selectedSubreddit: 'popular',
         loadingComments: false,
-        errorComments: false
+        errorComments: false,
+        isShowingComments: false
     },
     reducers: {
         setSelectedSubreddit: (state, action) => {
@@ -42,9 +42,11 @@ const redditPostsSlice = createSlice({
             else state.selectedSubreddit = action.payload;
             state.searchTerm = '';
         },
-        toggleShowingComments: (state, action) => {
-            state.posts[action.payload].isShowingComments = 
-                !state.posts[action.payload].isShowingComments;
+        toggleShowingComments: (state) => {
+            state.isShowingComments = !state.isShowingComments;
+        },
+        showComments: (state) => {
+            state.isShowingComments = true;
         }
     },
     extraReducers: builder => {
@@ -87,7 +89,7 @@ const redditPostsSlice = createSlice({
 });
 
 export default redditPostsSlice.reducer;
-export const { setSelectedSubreddit, toggleShowingComments } = redditPostsSlice.actions;
+export const { setSelectedSubreddit, toggleShowingComments, showComments } = redditPostsSlice.actions;
 export const selectPosts = state => state.redditPosts.posts;
 export const selectFilteredPosts = state => {
     const posts = selectPosts(state);
@@ -99,6 +101,8 @@ export const selectFilteredPosts = state => {
     }
     return posts;
 };
+
+export const selectIsShowingComments = state => state.redditPosts.isShowingComments;
 export const selectIsLoading = state => state.redditPosts.isLoading;
 export const selectHasError = state => state.redditPosts.hasError;
 export const selectSubreddit = state => state.redditPosts.selectedSubreddit;

@@ -1,18 +1,28 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import Markdown from 'react-markdown';
 import remarkGfm from 'remark-gfm';
 import './Post.css';
 import { getDateDifference, roundThousand } from '../../utils/utils';
 import { Link } from 'react-router-dom';
 import Comments from '../Comments/Comments';
-import { loadComments } from './redditPostsSlice';
-import { useDispatch } from 'react-redux';
+import { loadComments, toggleShowingComments, selectIsShowingComments, showComments } from './redditPostsSlice';
+import { useDispatch, useSelector } from 'react-redux';
 
-function Post({ post, showComments }) {
+function Post({ post, showsComments }) {
     const thumbnailEnd = post.thumbnail.substring(post.thumbnail.length - 3, post.thumbnail.length);
     const urlEnd = post.url.substring(post.url.length - 3, post.url.length);
     const hasImg = thumbnailEnd === "png" || thumbnailEnd === "jpg" || urlEnd === "png" || urlEnd === "jpg";
     const dispatch = useDispatch();
+    const isShowingComments = useSelector(selectIsShowingComments);
+
+    useEffect(() => {
+        dispatch(showComments());
+    }, []);
+
+    const handleClick = () => {
+        dispatch(toggleShowingComments());
+        dispatch(loadComments(post.permalink));
+    };
 
     const getPost = () => {
         return (
@@ -38,14 +48,14 @@ function Post({ post, showComments }) {
                     ""
             }
             <hr />
-            <Link className="stats" to={`/posts/${post.id}`} onClick={() => dispatch(loadComments(post.permalink))}>
+            <Link className="stats" to={`/posts/${post.id}`} onClick={handleClick}>
                 <div className="stats">
                     <img src="../images/comment_icon.png" alt="comment icon" /> {roundThousand(post.num_comments)}
                     &nbsp;&nbsp;<img src="../images/score_icon.png" alt="score icon" /> {roundThousand(post.score)}
                 </div>
             </Link>
             {
-                showComments && <Comments comments={post.comments} />
+                showsComments && isShowingComments && <Comments comments={post.comments} />
             }      
         </div>
         );

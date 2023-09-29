@@ -3,10 +3,10 @@ import React from 'react';
 function Comment({ comment }) {
     return (
         <div>
+            <hr />
             {
                 comment.body
             }
-            <hr />
         </div>
     );
 }
