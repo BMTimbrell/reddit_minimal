@@ -28,9 +28,13 @@ img.thumbnail, .post video {
     width: 100%;
 }
 
+.stats {
+    text-decoration: none;
+    color: black;
+}
+
 .stats:hover {
     background-color: #cacaca;
-    cursor: pointer;
 }
 
 .stats img {

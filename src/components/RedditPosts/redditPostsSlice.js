@@ -10,6 +10,14 @@ export const loadPosts = createAsyncThunk(
     }
 );
 
+export const loadComments = createAsyncThunk(
+    'redditPosts/loadComments',
+    async (permalink) => {
+        const data = await fetch(`https://www.reddit.com${permalink}.json`);
+        const json = await data.json();
+    }
+);
+
 const redditPostsSlice = createSlice({
     name: 'redditPosts',
     initialState: {
@@ -41,7 +49,21 @@ const redditPostsSlice = createSlice({
                 state.hasError = true;
                 state.isLoading = false;
                 console.log(action.error);
-            });
+            }).addCase(loadComments.pending, (state) => {
+                state.isLoading = true;
+                state.hasError = false;
+                console.log("loading");
+            })
+            .addCase(loadComments.fulfilled, (state, action) => {
+                state.isLoading = false;
+                state.hasError = false;
+                state.posts = action.payload;
+            })
+            .addCase(loadComments.rejected, (state, action) => {
+                state.hasError = true;
+                state.isLoading = false;
+                console.log(action.error);
+            })
     }
 });
 

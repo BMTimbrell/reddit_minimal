@@ -1,16 +1,18 @@
 import React from 'react';
-import Comment from '../Comment/Comment';
 import Markdown from 'react-markdown';
 import remarkGfm from 'remark-gfm';
 import './Post.css';
 import { getDateDifference, roundThousand } from '../../utils/utils';
+import { Link } from 'react-router-dom';
 
 function Post({post}) {
     const thumbnailEnd = post.thumbnail.substring(post.thumbnail.length - 3, post.thumbnail.length);
     const urlEnd = post.url.substring(post.url.length - 3, post.url.length);
-    const hasImg = thumbnailEnd === "png" || thumbnailEnd === "jpg" || urlEnd === "png" || urlEnd === "jpg"
-    return (
-        <div className="post">
+    const hasImg = thumbnailEnd === "png" || thumbnailEnd === "jpg" || urlEnd === "png" || urlEnd === "jpg";
+
+    const getPost = () => {
+        return (
+            <div className="post">
             <p className="time">Posted by {post.author + ' ' + getDateDifference(post.created_utc)}</p>
             <h3>{post.title}</h3>
             <Markdown className="content" children={post.selftext} remarkPlugins={[remarkGfm]} />
@@ -32,12 +34,18 @@ function Post({post}) {
                     ""
             }
             <hr />
-            <div className="stats">
-                <img src="../images/comment_icon.png" alt="comment icon" /> {roundThousand(post.num_comments)}
-                &nbsp;&nbsp;<img src="../images/score_icon.png" alt="score icon" /> {roundThousand(post.score)}
-            </div>
+                <Link className="stats" to={`/${post.id}`}>
+                    <div className="stats">
+                        <img src="../images/comment_icon.png" alt="comment icon" /> {roundThousand(post.num_comments)}
+                        &nbsp;&nbsp;<img src="../images/score_icon.png" alt="score icon" /> {roundThousand(post.score)}
+                    </div>
+                </Link>
         </div>
-    );
+        );
+    };
+
+    return getPost();
+
 }
 
 export default Post;
