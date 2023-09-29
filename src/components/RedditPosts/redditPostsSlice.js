@@ -1,4 +1,5 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
+import { selectSearchTerm } from '../Header/searchSlice';
 
 export const loadPosts = createAsyncThunk(
     'redditPosts/loadPosts',
@@ -15,7 +16,6 @@ const redditPostsSlice = createSlice({
         posts: [],
         isLoading: false,
         hasError: false,
-        searchTerm: '',
         selectedSubreddit: 'popular'
     },
     reducers: {
@@ -48,7 +48,6 @@ const redditPostsSlice = createSlice({
 export default redditPostsSlice.reducer;
 export const {setSelectedSubreddit} = redditPostsSlice.actions;
 export const selectPosts = state => state.redditPosts.posts;
-export const selectSearchTerm = state => state.redditPosts.searchTerm;
 export const selectFilteredPosts = state => {
     const posts = selectPosts(state);
     const searchTerm = selectSearchTerm(state);

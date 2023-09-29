@@ -11,7 +11,7 @@ function Post({post}) {
     const hasImg = thumbnailEnd === "png" || thumbnailEnd === "jpg" || urlEnd === "png" || urlEnd === "jpg"
     return (
         <div className="post">
-            <span className="time">Posted by {post.author + ' ' + getDateDifference(post.created_utc)}</span>
+            <p className="time">Posted by {post.author + ' ' + getDateDifference(post.created_utc)}</p>
             <h3>{post.title}</h3>
             <Markdown className="content" children={post.selftext} remarkPlugins={[remarkGfm]} />
             {
@@ -32,7 +32,7 @@ function Post({post}) {
                     ""
             }
             <hr />
-            <div className="footnote">
+            <div className="stats">
                 <img src="../images/comment_icon.png" alt="comment icon" /> {roundThousand(post.num_comments)}
                 &nbsp;&nbsp;<img src="../images/score_icon.png" alt="score icon" /> {roundThousand(post.score)}
             </div>

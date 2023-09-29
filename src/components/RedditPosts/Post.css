@@ -3,16 +3,16 @@
     background-color: white;
     color: black;
     margin: 2% auto;
-    text-align: left;
-    padding: 0.3125rem;
+    text-align: center;
+    padding: 0.3125rem 0.9375rem;
 }
 
 h3 {
-    margin: 0.3125rem;
+    margin: 0.625rem;
 }
 
 .content {
-    margin-left: 0.3125rem;
+    text-align: left;
 }
 
 hr {
@@ -21,25 +21,19 @@ hr {
 }
 
 .time {
-    text-align: center;
     color: rgba(0, 0, 0, 0.6);
-    margin-left: 0.3125rem;
 }
 
 img.thumbnail, .post video {
     width: 100%;
 }
 
-.footnote {
-    text-align: center;
-}
-
-.footnote:hover {
+.stats:hover {
     background-color: #cacaca;
     cursor: pointer;
 }
 
-.footnote img {
+.stats img {
     height: 1em;
     width: auto;
 }
