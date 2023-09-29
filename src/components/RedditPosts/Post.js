@@ -15,6 +15,7 @@ function Post({ post, showsComments }) {
     const dispatch = useDispatch();
     const isShowingComments = useSelector(selectIsShowingComments);
 
+    //Always show comments on first render
     useEffect(() => {
         dispatch(showComments());
     }, []);

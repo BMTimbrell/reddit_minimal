@@ -72,6 +72,7 @@ const redditPostsSlice = createSlice({
             .addCase(loadComments.fulfilled, (state, action) => {
                 state.loadingComments = false;
                 state.errorComments = false;
+                if (action.payload.length === 0) return;
                 for (const post of state.posts) {
                     if (post.id === action.payload[0].data.parent_id.substring(3)) {
                         post.comments = action.payload;
