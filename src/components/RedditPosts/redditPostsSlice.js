@@ -71,8 +71,9 @@ const redditPostsSlice = createSlice({
                 state.loadingComments = false;
                 state.errorComments = false;
                 for (const post of state.posts) {
-                    if (post.id === action.payload[0].parentId) {
+                    if (post.id === action.payload[0].data.parent_id.substring(3)) {
                         post.comments = action.payload;
+                        console.log('it worked');
                         break;
                     }
                 }

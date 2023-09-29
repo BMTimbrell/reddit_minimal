@@ -1,8 +1,15 @@
 import React from 'react';
+import Comment from './Comment';
 
-function Comments({ name }) {
+function Comments({ comments }) {
     return (
-        <h1>{name ? 'hi' : 'nooo'}</h1>
+        <>
+            {   
+                comments.map(comment => (
+                    <Comment key={comment.data.id} comment={comment.data} />
+                ))
+            }
+        </>
     );
 }
 

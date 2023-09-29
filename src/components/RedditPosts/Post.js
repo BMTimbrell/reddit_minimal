@@ -5,12 +5,14 @@ import './Post.css';
 import { getDateDifference, roundThousand } from '../../utils/utils';
 import { Link } from 'react-router-dom';
 import Comments from '../Comments/Comments';
-import { Outlet } from 'react-router-dom';
+import { loadComments } from './redditPostsSlice';
+import { useDispatch } from 'react-redux';
 
 function Post({ post, showComments }) {
     const thumbnailEnd = post.thumbnail.substring(post.thumbnail.length - 3, post.thumbnail.length);
     const urlEnd = post.url.substring(post.url.length - 3, post.url.length);
     const hasImg = thumbnailEnd === "png" || thumbnailEnd === "jpg" || urlEnd === "png" || urlEnd === "jpg";
+    const dispatch = useDispatch();
 
     const getPost = () => {
         return (
@@ -36,16 +38,14 @@ function Post({ post, showComments }) {
                     ""
             }
             <hr />
-            <Link className="stats" to={`/posts/${post.id}`}>
+            <Link className="stats" to={`/posts/${post.id}`} onClick={() => dispatch(loadComments(post.permalink))}>
                 <div className="stats">
                     <img src="../images/comment_icon.png" alt="comment icon" /> {roundThousand(post.num_comments)}
                     &nbsp;&nbsp;<img src="../images/score_icon.png" alt="score icon" /> {roundThousand(post.score)}
                 </div>
             </Link>
             {
-                showComments ?
-                    <Comments name="heey"/>
-                : ""
+                showComments && <Comments comments={post.comments} />
             }      
         </div>
         );
