@@ -4,8 +4,10 @@ import remarkGfm from 'remark-gfm';
 import './Post.css';
 import { getDateDifference, roundThousand } from '../../utils/utils';
 import { Link } from 'react-router-dom';
+import Comments from '../Comments/Comments';
+import { Outlet } from 'react-router-dom';
 
-function Post({post}) {
+function Post({ post, showComments }) {
     const thumbnailEnd = post.thumbnail.substring(post.thumbnail.length - 3, post.thumbnail.length);
     const urlEnd = post.url.substring(post.url.length - 3, post.url.length);
     const hasImg = thumbnailEnd === "png" || thumbnailEnd === "jpg" || urlEnd === "png" || urlEnd === "jpg";
@@ -26,20 +28,25 @@ function Post({post}) {
             }
             {
                 post.is_video ? 
-                <video controls>
-                    <source src={post.media.reddit_video.fallback_url} type="video/mp4" />
-                    Your browser does not support the video tag.
-                </video>
+                    <video controls>
+                        <source src={post.media.reddit_video.fallback_url} type="video/mp4" />
+                        Your browser does not support the video tag.
+                    </video>
                 : 
                     ""
             }
             <hr />
-                <Link className="stats" to={`/${post.id}`}>
-                    <div className="stats">
-                        <img src="../images/comment_icon.png" alt="comment icon" /> {roundThousand(post.num_comments)}
-                        &nbsp;&nbsp;<img src="../images/score_icon.png" alt="score icon" /> {roundThousand(post.score)}
-                    </div>
-                </Link>
+            <Link className="stats" to={`/posts/${post.id}`}>
+                <div className="stats">
+                    <img src="../images/comment_icon.png" alt="comment icon" /> {roundThousand(post.num_comments)}
+                    &nbsp;&nbsp;<img src="../images/score_icon.png" alt="score icon" /> {roundThousand(post.score)}
+                </div>
+            </Link>
+            {
+                showComments ?
+                    <Comments name="heey"/>
+                : ""
+            }      
         </div>
         );
     };

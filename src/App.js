@@ -1,17 +1,20 @@
 import React from 'react';
-import { RouterProvider, createBrowserRouter, createRoutesFromElements, Route } from 'react-router-dom';
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import Home from './components/Home/Home';
 import Comments from './components/Comments/Comments';
-
-const appRouter = createBrowserRouter(createRoutesFromElements(
-  <Route path="/" element={ <Home /> }>
-    <Route path=":postId" element={ <Comments/> }/>
-  </Route>
-));
+import Posts from './components/RedditPosts/Posts';
 
 function App() {
   return (
-    <RouterProvider router={appRouter}/>
+    <BrowserRouter>
+      <Routes>
+        <Route path="/" element={ <Home /> }>
+          <Route path="posts" element={ <Posts /> }>
+            <Route path=":postId" element={ <Comments /> }/>
+          </Route>
+        </Route>
+      </Routes>
+    </BrowserRouter>
   );
 }
 

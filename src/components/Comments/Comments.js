@@ -1,8 +1,8 @@
 import React from 'react';
 
-function Comments() {
+function Comments({ name }) {
     return (
-        <h1>Comments go here!</h1>
+        <h1>{name ? 'hi' : 'nooo'}</h1>
     );
 }
 

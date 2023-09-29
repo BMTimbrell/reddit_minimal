@@ -3,7 +3,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import Post from './Post';
 import { selectFilteredPosts, loadPosts, selectSubreddit, selectIsLoading, selectHasError, setSelectedSubreddit } from './redditPostsSlice';
 import './Posts.css';
-import { useParams } from 'react-router-dom';
+import { useParams, Outlet } from 'react-router-dom';
 
 function Posts() {
     const dispatch = useDispatch();
@@ -29,7 +29,7 @@ function Posts() {
                     isLoading ? <p>Loading...</p> :
                     hasError ? <p>Failed to load posts!</p> :
                     posts.map(post => (
-                        <Post post={post} key={post.id} />
+                        <Post post={post} key={post.id} showComments={false} />
                     ))
                 }
             </div>
@@ -42,7 +42,7 @@ function Posts() {
                 {
                     isLoading ? <p>Loading...</p> :
                     hasError ? <p>Failed to load posts!</p> :
-                        <Post post={post[0]} key={post[0].id} />
+                        <Post post={post[0]} key={post[0].id} showComments={true}><Outlet /></Post>
                 }
             </div>
         );

@@ -6,7 +6,14 @@ export const loadPosts = createAsyncThunk(
     async (subreddit) => {
         const data = await fetch(`https://www.reddit.com/r/${subreddit}.json`);
         const json = await data.json();
-        return json.data.children.map((post) => post.data);
+        return json.data.children.map((post) => (
+            {
+                ...post.data,
+                isShowingComments: false,
+                comments: []
+            }
+            
+        ));
     }
 );
 
@@ -15,6 +22,7 @@ export const loadComments = createAsyncThunk(
     async (permalink) => {
         const data = await fetch(`https://www.reddit.com${permalink}.json`);
         const json = await data.json();
+        return json[1].data.children;     
     }
 );
 
@@ -24,13 +32,19 @@ const redditPostsSlice = createSlice({
         posts: [],
         isLoading: false,
         hasError: false,
-        selectedSubreddit: 'popular'
+        selectedSubreddit: 'popular',
+        loadingComments: false,
+        errorComments: false
     },
     reducers: {
         setSelectedSubreddit: (state, action) => {
             if (action.payload === "") state.selectedSubreddit = 'popular';
             else state.selectedSubreddit = action.payload;
             state.searchTerm = '';
+        },
+        toggleShowingComments: (state, action) => {
+            state.posts[action.payload].isShowingComments = 
+                !state.posts[action.payload].isShowingComments;
         }
     },
     extraReducers: builder => {
@@ -50,25 +64,29 @@ const redditPostsSlice = createSlice({
                 state.isLoading = false;
                 console.log(action.error);
             }).addCase(loadComments.pending, (state) => {
-                state.isLoading = true;
-                state.hasError = false;
-                console.log("loading");
+                state.loadingComments = true;
+                state.errorComments = false;
             })
             .addCase(loadComments.fulfilled, (state, action) => {
-                state.isLoading = false;
-                state.hasError = false;
-                state.posts = action.payload;
+                state.loadingComments = false;
+                state.errorComments = false;
+                for (const post of state.posts) {
+                    if (post.id === action.payload[0].parentId) {
+                        post.comments = action.payload;
+                        break;
+                    }
+                }
             })
             .addCase(loadComments.rejected, (state, action) => {
-                state.hasError = true;
-                state.isLoading = false;
+                state.errorComments = true;
+                state.loadingComments = false;
                 console.log(action.error);
             })
     }
 });
 
 export default redditPostsSlice.reducer;
-export const {setSelectedSubreddit} = redditPostsSlice.actions;
+export const { setSelectedSubreddit, toggleShowingComments } = redditPostsSlice.actions;
 export const selectPosts = state => state.redditPosts.posts;
 export const selectFilteredPosts = state => {
     const posts = selectPosts(state);

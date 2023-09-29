@@ -1,15 +1,18 @@
 import React from 'react';
-import Posts from '../RedditPosts/Posts';
 import Header from '../Header/Header';
-import { Outlet } from 'react-router-dom';
+import { Outlet, Navigate, useParams } from 'react-router-dom';
 import './Home.css';
 
 function Home() {
+    const { postId } = useParams();
     return(
         <div className="home">
             <Header />
-            <Posts />
             <Outlet />
+            {
+                !postId && <Navigate to="posts" />
+            }
+            
         </div>
     );
 }
