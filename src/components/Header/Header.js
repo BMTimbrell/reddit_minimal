@@ -1,12 +1,14 @@
 import React from 'react';
 import './Header.css';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import { selectSubreddit } from '../RedditPosts/redditPostsSlice';
+import { setSearchTerm } from './searchSlice';
 
 function Header() {
+    const dispatch = useDispatch();
     const subreddit = useSelector(selectSubreddit);
-    const onChangeHandler = () => {
-
+    const onChangeHandler = (e) => {
+        dispatch(setSearchTerm(e.target.value));
     };
 
     return (
