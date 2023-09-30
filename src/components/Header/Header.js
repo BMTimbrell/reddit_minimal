@@ -4,7 +4,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import { selectSubreddit } from '../RedditPosts/redditPostsSlice';
 import { setSearchTerm } from './searchSlice';
 
-function Header() {
+function Header({ className }) {
     const dispatch = useDispatch();
     const subreddit = useSelector(selectSubreddit);
     const onChangeHandler = (e) => {
@@ -12,7 +12,7 @@ function Header() {
     };
 
     return (
-        <header>
+        <header className={className}>
             <h1>Reddit Minimal</h1>
             <input
                 type="text" 

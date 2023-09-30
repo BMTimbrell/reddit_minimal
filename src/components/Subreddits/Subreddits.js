@@ -3,6 +3,7 @@ import { selectSubreddits, selectIsLoading, selectHasError, loadSubreddits } fro
 import { useSelector, useDispatch } from 'react-redux';
 import Subreddit from './Subreddit';
 import { formatImageSrc } from '../../utils/utils';
+import './Subreddits.css';
 
 function Subreddits() {
     const isLoading = useSelector(selectIsLoading);
@@ -18,7 +19,8 @@ function Subreddits() {
     if (hasError) return <p>Failed to load subreddits</p>;
 
     return (
-        <div>
+        <div className="subreddits">
+            <h2>Subreddits</h2>
             {
                 subreddits.map(subreddit => (
                     <Subreddit name={subreddit.display_name_prefixed} icon={formatImageSrc(subreddit.community_icon)} key={subreddit.display_name} />

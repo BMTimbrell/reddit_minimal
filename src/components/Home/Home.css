@@ -2,4 +2,12 @@
     padding: 0;
     background-color: #1B1A17;
     color: white;
+    display: grid;
+    grid-template-rows: 4.375rem 1fr;
+    grid-template-columns: 3fr 1fr;
+    row-gap: 1.25rem;
+}
+
+.header {
+    grid-column: 1 / span 2;
 }

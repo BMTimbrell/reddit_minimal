@@ -1,6 +1,7 @@
 .posts {
     text-align: center;
-    margin: 2%;
+    width: 80%;
+    margin-left: 5%;
 }
 
 input {

@@ -1,4 +1,18 @@
+.subreddit {
+    display: flex;
+    align-items: center;
+    margin-bottom: 5%;
+    width: 80%;
+}
+
 .subreddit img {
     width: 3.125rem;
-    height: auto;
+    height: 3.125rem;
+    margin-right: 5%;
+}
+
+.subreddit:hover {
+    border: 1px solid #FC4F00;
+    cursor: pointer;
+    background-color: #FC4F00;
 }

@@ -8,7 +8,7 @@ function Home() {
     const { postId } = useParams();
     return(
         <div className="home">
-            <Header />
+            <Header className="header" />
             <Outlet />
             <Subreddits />
             {
