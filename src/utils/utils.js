@@ -30,3 +30,10 @@ export const roundThousand = number => {
     fraction = Math.floor(fraction) + Math.round(fraction % 1 * 10) / 10;
     return `${fraction}k`;
 }
+
+export const formatImageSrc = src => {
+    const dotIndex = src.lastIndexOf('.');
+    const result = src.substring(0, dotIndex + 4);
+    console.log(result);
+    return result;
+};
