@@ -6,12 +6,15 @@ import './Posts.css';
 import { useParams, Outlet } from 'react-router-dom';
 
 function Posts() {
+    const messageStyle = {fontWeight: 'bold', margin: '0.625rem', fontSize: '20px'};
     const dispatch = useDispatch();
     const posts = useSelector(selectFilteredPosts);
     const subreddit = useSelector(selectSubreddit);
     const isLoading = useSelector(selectIsLoading);
     const hasError = useSelector(selectHasError);
     let { postId } = useParams();
+    const loadingMessage = <p style={messageStyle}>Loading...</p>;
+    const errorMessage = <p style={messageStyle}>Failed to load posts</p>;
 
     useEffect(() => {
         dispatch(loadPosts(subreddit));
@@ -20,14 +23,15 @@ function Posts() {
     const onChangeHandler = e => {
         dispatch(setSelectedSubreddit(e.target.value));
     };
+
     if (!postId) {
         return (
             <div className="posts">
-                    <h2>r/{subreddit}</h2>
-                    <input type="text" placeholder="Enter subreddit name" onChange={onChangeHandler} />
+                <h2>r/{subreddit}</h2>
+                <input type="text" placeholder="Enter subreddit name" onChange={onChangeHandler} />
                 {
-                    isLoading ? <p>Loading...</p> :
-                    hasError ? <p>Failed to load posts!</p> :
+                    isLoading ? loadingMessage :
+                    hasError ? errorMessage :
                     posts.map(post => (
                         <Post post={post} key={post.id} showsComments={false} />
                     ))
@@ -38,10 +42,10 @@ function Posts() {
         let post = posts.filter(el => el.id === postId);
         return (
             <div className="posts">
-                    <h2>r/{subreddit}</h2>
+                <h2>r/{subreddit}/post</h2>
                 {
-                    isLoading ? <p>Loading...</p> :
-                    hasError ? <p>Failed to load posts!</p> :
+                    isLoading ? loadingMessage :
+                    hasError ? errorMessage :
                         <Post post={post[0]} key={post[0].id} showsComments={true}><Outlet /></Post>
                 }
             </div>

@@ -107,3 +107,5 @@ export const selectIsShowingComments = state => state.redditPosts.isShowingComme
 export const selectIsLoading = state => state.redditPosts.isLoading;
 export const selectHasError = state => state.redditPosts.hasError;
 export const selectSubreddit = state => state.redditPosts.selectedSubreddit;
+export const selectLoadingComments = state => state.redditPosts.loadingComments;
+export const selectErrorComments = state => state.redditPosts.errorComments;
