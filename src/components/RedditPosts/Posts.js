@@ -27,8 +27,10 @@ function Posts() {
     if (!postId) {
         return (
             <div className="posts">
-                <h2>r/{subreddit}</h2>
-                <input type="text" placeholder="Enter subreddit name" onChange={onChangeHandler} />
+                <div className="subredditName">
+                    <h2>r/{subreddit}</h2>
+                    <input type="text" placeholder="Enter subreddit name" onChange={onChangeHandler} />
+                </div>
                 {
                     isLoading ? loadingMessage :
                     hasError ? errorMessage :
@@ -44,7 +46,9 @@ function Posts() {
             filteredPost = posts.filter(el => el.id === postId);
         return (
             <div className="posts">
-                <h2 style={{marginBottom: '1.4375rem'}}>r/{subreddit}/post</h2>
+                <div className="subredditName">
+                    <h2 style={{marginBottom: '1.4375rem'}}>r/{subreddit}/post</h2>
+                </div>
                 {
                     isLoading ? loadingMessage :
                     hasError ? errorMessage :

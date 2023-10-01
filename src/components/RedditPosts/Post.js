@@ -18,7 +18,7 @@ function Post({ post, showsComments }) {
     //Always show comments on first render
     useEffect(() => {
         dispatch(showComments());
-    }, []);
+    }, [dispatch]);
 
     const handleClick = () => {
         dispatch(toggleShowingComments());
@@ -28,37 +28,37 @@ function Post({ post, showsComments }) {
     const getPost = () => {
         return (
             <div className="post">
-            <p className="time">Posted by {post.author + ' ' + getDateDifference(post.created_utc)}</p>
-            <h3>{post.title}</h3>
-            <Markdown className="content" children={post.selftext} remarkPlugins={[remarkGfm]} />
-            {
-                //check if post has a preview image
-                hasImg && !post.is_video ?
-                    <img className="thumbnail" src={post.thumbnail === "nsfw" || 
-                        post.url.charAt(post.url.length - 1) === "g" ? post.url : post.thumbnail} alt="thumbnail"/>
-                :
-                    ""
-            }
-            {
-                post.is_video ? 
-                    <video controls>
-                        <source src={post.media.reddit_video.fallback_url} type="video/mp4" />
-                        Your browser does not support the video tag.
-                    </video>
-                : 
-                    ""
-            }
-            <hr />
-            <Link className="stats" to={`/posts/${post.id}`} onClick={handleClick}>
-                <div className="stats">
-                    <img src="../images/comment_icon.png" alt="comment icon" /> {roundThousand(post.num_comments)}
-                    &nbsp;&nbsp;<img src="../images/score_icon.png" alt="score icon" /> {roundThousand(post.score)}
-                </div>
-            </Link>
-            {
-                showsComments && isShowingComments && <Comments comments={post.comments} />
-            }      
-        </div>
+                <p className="time">Posted by {post.author + ' ' + getDateDifference(post.created_utc)}</p>
+                <h3>{post.title}</h3>
+                <Markdown className="content" children={post.selftext} remarkPlugins={[remarkGfm]} />
+                {
+                    //check if post has a preview image
+                    hasImg && !post.is_video ?
+                        <img className="thumbnail" src={post.thumbnail === "nsfw" || 
+                            post.url.charAt(post.url.length - 1) === "g" ? post.url : post.thumbnail} alt="thumbnail"/>
+                    :
+                        ""
+                }
+                {
+                    post.is_video ? 
+                        <video controls>
+                            <source src={post.media.reddit_video.fallback_url} type="video/mp4" />
+                            Your browser does not support the video tag.
+                        </video>
+                    : 
+                        ""
+                }
+                <hr />
+                <Link className="stats" to={`/posts/${post.id}`} onClick={handleClick}>
+                    <div className="stats">
+                        <img src="../images/comment_icon.png" alt="comment icon" /> {roundThousand(post.num_comments)}
+                        &nbsp;&nbsp;<img src="../images/score_icon.png" alt="score icon" /> {roundThousand(post.score)}
+                    </div>
+                </Link>
+                {
+                    showsComments && isShowingComments && <Comments comments={post.comments} />
+                }      
+            </div>
         );
     };
 

@@ -14,15 +14,26 @@ function Home() {
     }, [pathname]);
 
     return(
-        <div className="home">
-            <Header className="header" />
-            <Outlet />
-            <Subreddits />
-            {
-                !postId && <Navigate to="posts" />
-            }
-            
-        </div>
+        <>
+            <div className="home big">
+                <Header />
+                <Outlet />
+                <Subreddits />
+                {
+                    !postId && <Navigate to="posts" />
+                }
+                
+            </div>
+            <div className="home small">
+                <Header />
+                <Outlet />
+                <Subreddits />
+                {
+                    !postId && <Navigate to="posts" />
+                }
+            </div>
+        </>
+        
     );
 }
 

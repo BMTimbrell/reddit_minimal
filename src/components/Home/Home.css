@@ -8,6 +8,20 @@
     row-gap: 1.25rem;
 }
 
-.header {
-    grid-column: 1 / span 2;
+.small {
+    display: none;
+}
+
+@media only screen and (max-width: 1000px) {
+    .big {
+        display: none;
+    }
+    
+    .small {
+        display: grid;
+    }
+    
+    .home {
+        row-gap: 6.25rem;
+    }
 }

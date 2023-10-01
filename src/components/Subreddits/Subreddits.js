@@ -25,8 +25,8 @@ function Subreddits() {
         dispatch(setSelectedSubreddit(e.target.value));
     }
 
-    if (isLoading) return <p style={messageStyle}>Loading subreddits...</p>;
-    if (hasError) return <p style={messageStyle}>Failed to load subreddits</p>;
+    if (isLoading) return <p className="subreddits" style={messageStyle}>Loading subreddits...</p>;
+    if (hasError) return <p className="subreddits" style={messageStyle}>Failed to load subreddits</p>;
 
     return (
         <div className="subreddits">
@@ -43,13 +43,11 @@ function Subreddits() {
                 }
             </div>
             <div className="smallScreen">
-                <label htmlFor="subreddits">
-                    <h2>Subreddits:</h2>
-                </label>
+                <h2>Subreddits:</h2>
                 <select name="subreddits" id="subreddits">
                     {
                         subreddits.map(subreddit => (
-                            <option value={subreddit.display_name} onClick={handleOnClick}>
+                            <option value={subreddit.display_name} onClick={handleOnClick} key={subreddit.id}>
                                 {subreddit.display_name_prefixed}
                             </option>
                         ))

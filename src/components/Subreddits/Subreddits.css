@@ -24,6 +24,8 @@
     }
 
     .subreddits {
-        margin-top: 0.0625rem;
+        position: absolute;
+        top: 5.3125rem;
+        right: 20%;
     }
 }

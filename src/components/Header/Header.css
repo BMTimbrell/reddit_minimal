@@ -6,6 +6,7 @@ header {
     grid-template-columns: 49% 1fr;
     column-gap: 1%;
     padding: 0.625rem;
+    grid-column: 1 / span 2;
 }
 
 header input {
