@@ -1,5 +1,7 @@
 import React from 'react';
 import { getDateDifference } from '../../utils/utils';
+import Markdown from 'react-markdown';
+import remarkGfm from 'remark-gfm';
 
 function Comment({ comment }) {
     if (comment.author)
@@ -10,7 +12,7 @@ function Comment({ comment }) {
                     Posted by {comment.author + ' ' + getDateDifference(comment.created_utc)}
                 </p>
                 {
-                    comment.body
+                    <Markdown children={comment.body} remarkPlugins={[remarkGfm]} />
                 }
             </div>
         );

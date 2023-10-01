@@ -1,7 +1,8 @@
 .post {
     background-color: white;
     color: black;
-    margin: 2% auto;
+    margin: 0 auto;
+    margin-bottom: 2%;
     text-align: center;
     padding: 0.3125rem 0.9375rem;
 }

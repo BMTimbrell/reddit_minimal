@@ -18,7 +18,7 @@ function Posts() {
 
     useEffect(() => {
         dispatch(loadPosts(subreddit));
-    }, [subreddit]);
+    }, [subreddit, dispatch]);
 
     const onChangeHandler = e => {
         dispatch(setSelectedSubreddit(e.target.value));
@@ -39,14 +39,16 @@ function Posts() {
             </div>
         );
     } else {
-        let post = posts.filter(el => el.id === postId);
+        let filteredPost;
+        if (!isLoading && !hasError)
+            filteredPost = posts.filter(el => el.id === postId);
         return (
             <div className="posts">
                 <h2>r/{subreddit}/post</h2>
                 {
                     isLoading ? loadingMessage :
                     hasError ? errorMessage :
-                        <Post post={post[0]} key={post[0].id} showsComments={true}><Outlet /></Post>
+                        <Post post={filteredPost[0]} key={filteredPost[0].id} showsComments={true}><Outlet /></Post>
                 }
             </div>
         );

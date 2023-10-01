@@ -18,10 +18,10 @@ function Subreddit({ name, icon }) {
             {
                 !icon && <img
                     src="https://styles.redditmedia.com/t5_5s5qbl/styles/communityIcon_hkq7zlki8ug81.png"
-                />
+                 alt="subreddit icon" />
             }
             {
-                icon && <img src={icon} />
+                icon && <img src={icon} alt="subreddit icon" />
             }
             {name}
         </div>

@@ -10,13 +10,14 @@ function Subreddits() {
     const hasError = useSelector(selectHasError);
     const subreddits = useSelector(selectSubreddits);
     const dispatch = useDispatch();
+    const messageStyle = {fontWeight: 'bold', margin: '0.625rem', fontSize: '20px'};
 
     useEffect(() => {
         dispatch(loadSubreddits());
-    }, []);
+    }, [dispatch]);
 
-    if (isLoading) return <p>Loading subreddits...</p>;
-    if (hasError) return <p>Failed to load subreddits</p>;
+    if (isLoading) return <p style={messageStyle}>Loading subreddits...</p>;
+    if (hasError) return <p style={messageStyle}>Failed to load subreddits</p>;
 
     return (
         <div className="subreddits">

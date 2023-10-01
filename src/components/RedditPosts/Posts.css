@@ -1,11 +1,12 @@
 .posts {
     text-align: center;
-    width: 80%;
-    margin-left: 5%;
+    width: 90%;
+    justify-self: center;
 }
 
 input {
     text-align: center;
+    margin-bottom: 1.875rem;
 }
 
 h2 {
