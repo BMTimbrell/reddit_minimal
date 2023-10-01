@@ -1,0 +1,9 @@
+.comments ol, .comments ul, .comments table {
+    width: 50%;
+    margin: 0 auto;
+}
+
+.comments ul, .comments ol {
+    display: inline-block;
+    text-align: left;
+}
