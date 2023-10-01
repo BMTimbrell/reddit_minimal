@@ -23,12 +23,32 @@ function Subreddits() {
 
     return (
         <div className="subreddits">
-            <h2 style={postId && {marginBottom: '1.25rem'}}>Subreddits</h2>
-            {
-                subreddits.map(subreddit => (
-                    <Subreddit name={subreddit.display_name_prefixed} icon={formatImageSrc(subreddit.community_icon)} key={subreddit.display_name} />
-                ))
-            }
+            <div className="bigScreen">
+                <h2 style={postId && {marginBottom: '1.25rem'}}>Subreddits</h2>
+                {
+                    subreddits.map(subreddit => (
+                        <Subreddit
+                            name={subreddit.display_name_prefixed}
+                            icon={formatImageSrc(subreddit.community_icon)}
+                            key={subreddit.display_name}
+                        />
+                    ))
+                }
+            </div>
+            <div className="smallScreen">
+                <label htmlFor="subreddits">
+                    <h2>Subreddits:</h2>
+                </label>
+                <select name="subreddits" id="subreddits">
+                    {
+                        subreddits.map(subreddit => (
+                            <option value={subreddit.display_name}>
+                                {subreddit.display_name_prefixed}
+                            </option>
+                        ))
+                    }
+                </select>
+            </div>
         </div>
     );
 }
