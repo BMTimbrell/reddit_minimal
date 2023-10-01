@@ -4,7 +4,8 @@ import { useSelector, useDispatch } from 'react-redux';
 import Subreddit from './Subreddit';
 import { formatImageSrc } from '../../utils/utils';
 import './Subreddits.css';
-import { useParams } from 'react-router-dom';
+import { useParams, useNavigate } from 'react-router-dom';
+import { setSelectedSubreddit } from '../RedditPosts/redditPostsSlice';
 
 function Subreddits() {
     const isLoading = useSelector(selectIsLoading);
@@ -12,11 +13,17 @@ function Subreddits() {
     const subreddits = useSelector(selectSubreddits);
     const dispatch = useDispatch();
     let { postId } = useParams();
+    const navigate = useNavigate();
     const messageStyle = {fontWeight: 'bold', margin: '0.625rem', fontSize: '20px'};
 
     useEffect(() => {
         dispatch(loadSubreddits());
     }, [dispatch]);
+
+    const handleOnClick = (e) => {
+        if (postId) navigate('/posts');
+        dispatch(setSelectedSubreddit(e.target.value));
+    }
 
     if (isLoading) return <p style={messageStyle}>Loading subreddits...</p>;
     if (hasError) return <p style={messageStyle}>Failed to load subreddits</p>;
@@ -42,7 +49,7 @@ function Subreddits() {
                 <select name="subreddits" id="subreddits">
                     {
                         subreddits.map(subreddit => (
-                            <option value={subreddit.display_name}>
+                            <option value={subreddit.display_name} onClick={handleOnClick}>
                                 {subreddit.display_name_prefixed}
                             </option>
                         ))
