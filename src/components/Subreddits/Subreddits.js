@@ -4,12 +4,14 @@ import { useSelector, useDispatch } from 'react-redux';
 import Subreddit from './Subreddit';
 import { formatImageSrc } from '../../utils/utils';
 import './Subreddits.css';
+import { useParams } from 'react-router-dom';
 
 function Subreddits() {
     const isLoading = useSelector(selectIsLoading);
     const hasError = useSelector(selectHasError);
     const subreddits = useSelector(selectSubreddits);
     const dispatch = useDispatch();
+    let { postId } = useParams();
     const messageStyle = {fontWeight: 'bold', margin: '0.625rem', fontSize: '20px'};
 
     useEffect(() => {
@@ -21,7 +23,7 @@ function Subreddits() {
 
     return (
         <div className="subreddits">
-            <h2>Subreddits</h2>
+            <h2 style={postId && {marginBottom: '1.25rem'}}>Subreddits</h2>
             {
                 subreddits.map(subreddit => (
                     <Subreddit name={subreddit.display_name_prefixed} icon={formatImageSrc(subreddit.community_icon)} key={subreddit.display_name} />

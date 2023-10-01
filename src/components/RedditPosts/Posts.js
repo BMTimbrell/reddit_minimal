@@ -44,7 +44,7 @@ function Posts() {
             filteredPost = posts.filter(el => el.id === postId);
         return (
             <div className="posts">
-                <h2>r/{subreddit}/post</h2>
+                <h2 style={{marginBottom: '1.4375rem'}}>r/{subreddit}/post</h2>
                 {
                     isLoading ? loadingMessage :
                     hasError ? errorMessage :
