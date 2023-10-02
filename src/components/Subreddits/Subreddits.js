@@ -20,7 +20,7 @@ function Subreddits() {
         dispatch(loadSubreddits());
     }, [dispatch]);
 
-    const handleOnClick = (e) => {
+    const handleOnChange = (e) => {
         if (postId) navigate('/posts');
         dispatch(setSelectedSubreddit(e.target.value));
     }
@@ -44,10 +44,10 @@ function Subreddits() {
             </div>
             <div className="smallScreen">
                 <h2>Subreddits:</h2>
-                <select name="subreddits" id="subreddits">
+                <select name="subreddits" id="subreddits" onChange={handleOnChange}>
                     {
                         subreddits.map(subreddit => (
-                            <option value={subreddit.display_name} onClick={handleOnClick} key={subreddit.id} onTouchStart={handleOnClick}>
+                            <option value={subreddit.display_name} key={subreddit.id}>
                                 {subreddit.display_name_prefixed}
                             </option>
                         ))
