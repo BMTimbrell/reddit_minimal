@@ -15,7 +15,7 @@ function Home() {
 
     return(
         <>
-            <div className="home big">
+            <div className="home desktop">
                 <Header />
                 <Outlet />
                 <Subreddits />
@@ -24,10 +24,10 @@ function Home() {
                 }
                 
             </div>
-            <div className="home small">
+            <div className="home mobile">
                 <Header />
-                <Outlet />
                 <Subreddits />
+                <Outlet />
                 {
                     !postId && <Navigate to="posts" />
                 }
