@@ -1,4 +1,4 @@
-#Reddit Minimal
+# Reddit Minimal
 
 ![reddit_minimal](https://github.com/BMTimbrell/reddit_minimal/assets/97784102/505eaceb-f2b7-4cd1-9c2e-9ff66dead404)
 
