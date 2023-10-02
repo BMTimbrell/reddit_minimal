@@ -19,5 +19,4 @@ You may also see any lint errors in the console.
 
 ### View Online
 
-Visit [https://bmtimbrell.github.io/reddit_minimal](https://bmtimbrell.github.io/reddit_minimal) to visit the site. The site currently doesn't load upon refresh.
-You must visit the site again without the `/posts` path.
+Visit [https://bmtimbrell.github.io/reddit_minimal](https://bmtimbrell.github.io/reddit_minimal) to visit the site.
