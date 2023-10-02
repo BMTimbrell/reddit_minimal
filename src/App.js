@@ -6,9 +6,9 @@ import Posts from './components/RedditPosts/Posts';
 
 function App() {
   return (
-    <BrowserRouter>
+    <BrowserRouter basename="/reddit-minimal">
       <Routes>
-        <Route path="/" element={ <Home /> }>
+        <Route exact path="/reddit-minimal" element={ <Home /> }>
           <Route path="posts" element={ <Posts /> }>
             <Route path=":postId" element={ <Comments /> }/>
           </Route>
