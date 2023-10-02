@@ -47,7 +47,7 @@ function Subreddits() {
                 <select name="subreddits" id="subreddits">
                     {
                         subreddits.map(subreddit => (
-                            <option value={subreddit.display_name} onClick={handleOnClick} key={subreddit.id} style={{cursor:'pointer'}}>
+                            <option value={subreddit.display_name} onClick={handleOnClick} key={subreddit.id} onTouchStart={handleOnClick}>
                                 {subreddit.display_name_prefixed}
                             </option>
                         ))
