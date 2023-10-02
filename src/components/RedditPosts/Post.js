@@ -2,6 +2,8 @@ import React, { useEffect } from 'react';
 import Markdown from 'react-markdown';
 import remarkGfm from 'remark-gfm';
 import './Post.css';
+import commentIcon from '../../images/comment_icon.png';
+import scoreIcon from '../../images/score_icon.png';
 import { getDateDifference, roundThousand } from '../../utils/utils';
 import { Link } from 'react-router-dom';
 import Comments from '../Comments/Comments';
@@ -51,8 +53,8 @@ function Post({ post, showsComments }) {
                 <hr />
                 <Link className="stats" to={`/posts/${post.id}`} onClick={handleClick}>
                     <div className="stats">
-                        <img src={window.location.origin + '/images/comment_icon.png'} alt="comment icon" /> {roundThousand(post.num_comments)}
-                        &nbsp;&nbsp;<img src={window.location.origin + '/images/score_icon.png'} alt="score icon" /> {roundThousand(post.score)}
+                        <img src={commentIcon} alt="comment icon" /> {roundThousand(post.num_comments)}
+                        &nbsp;&nbsp;<img src={scoreIcon} alt="score icon" /> {roundThousand(post.score)}
                     </div>
                 </Link>
                 {
